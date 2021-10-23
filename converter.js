@@ -35,7 +35,7 @@ Ext.onReady(function() {
 			} else {
 				document.getElementById('converter').innerHTML= "The log is empty";
 				
-				setTimeout(() => document.getElementById('converter').innerHTML= "Конвертация закончена", 3000);
+				setTimeout(() => document.getElementById('converter').innerHTML= "Conversion complete", 3000);
 			}
 			
 			return;
