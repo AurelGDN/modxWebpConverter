@@ -9,7 +9,7 @@ Ext.onReady(function() {
 	
 	function manual_start(){ // Click in menu link
 		if(localStorage.getItem('converter_mode') == "clean"){ // Generate report
-			document.getElementById('converter').innerHTML= "Конвертация закончена";
+			document.getElementById('converter').innerHTML= "Conversion is finished";
 			localStorage.setItem('converter_mode', 'report');
 			
 			let output= "";
@@ -31,9 +31,9 @@ Ext.onReady(function() {
 				}
 				
 				Ext.MessageBox.minWidth = parseInt(document.documentElement.clientWidth) / 100 * 70;
-				Ext.MessageBox.alert('WEBP Конвертер: Журнал','<div style="max-height: 70vh; overflow-y: auto;"><ul>' + output + '<ul></div>');
+				Ext.MessageBox.alert('WEBP Converter: log','<div style="max-height: 70vh; overflow-y: auto;"><ul>' + output + '<ul></div>');
 			} else {
-				document.getElementById('converter').innerHTML= "Журнал пуст";
+				document.getElementById('converter').innerHTML= "The log is empty";
 				
 				setTimeout(() => document.getElementById('converter').innerHTML= "Конвертация закончена", 3000);
 			}
@@ -50,7 +50,7 @@ Ext.onReady(function() {
 			}
 		} else {
 			if(localStorage.getItem('converter_mode') != "get"){
-				document.getElementById('converter').innerHTML= "Поиск изображений";
+				document.getElementById('converter').innerHTML= "The log is empty";
 				fetch_converter('get');
 			}
 		}
@@ -79,7 +79,7 @@ Ext.onReady(function() {
 			}
 		}
 		
-		document.getElementById('converter').innerHTML= "Просмотр журнала";
+		document.getElementById('converter').innerHTML= "View the log";
 		localStorage.setItem(window.converter_token, "stopped");
 		localStorage.setItem('converter_count', 0);
 		
@@ -96,14 +96,14 @@ Ext.onReady(function() {
 		let converter_mode= localStorage.getItem('converter_mode');
 		if(converter_mode) {
 			if(converter_mode == "get"){
-				document.getElementById('converter').innerHTML= "Ошибка, попробуйте позже";
+				document.getElementById('converter').innerHTML= "Error, try again later";
 				localStorage.setItem('converter_mode', 'error');
 			}
 			if(converter_mode == "convert"){
 				files_iterator();
 			}
 			if(converter_mode == "clean"){
-				document.getElementById('converter').innerHTML= "Просмотр журнала";
+				document.getElementById('converter').innerHTML= "View the log";
 			}
 		}
 	}
@@ -137,7 +137,7 @@ Ext.onReady(function() {
 					localStorage.setItem('converter_cwebp', data.cwebp);
 					
 					if(typeof( data.execution_time ) != "undefined" && data.execution_time == "exceeded"){
-						localStorage.setItem('converter_error', 'Ошибка: слишком много файлов');
+						localStorage.setItem('converter_error', 'Error: Too many files');
 					}
 					
 					data.images.forEach(function(file, index, created) {
@@ -207,9 +207,9 @@ Ext.onReady(function() {
 	// Init
 	let modxUserMenu= document.getElementById('modx-user-menu');
 	let a= document.createElement("a");
-	let textUserMenu= document.createTextNode( "WEBP Конвертер" );
+	let textUserMenu= document.createTextNode( "WEBP Converter" );
 	a.setAttribute("id", "converter");
-	a.setAttribute("title", "Очередь изображений для webp конвертера");
+	a.setAttribute("title", "Image queue for webp converter");
 	a.onclick= manual_start;
 	a.appendChild( textUserMenu );
 	
